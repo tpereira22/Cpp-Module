@@ -2,14 +2,14 @@
 
 Zombie* zombieHorde( int N, std::string name )
 {
-    Zombie  *zombies[N];
     int i;
+    Zombie  *zombiehorde = new Zombie[N];
 
     i = 0;
-    while (i <= N);
+    while (i < N)
     {
-        zombies[i] = new Zombie(name);
+        zombiehorde[i].setName(name);
         i++;
     }
-    return (zombies[0]);
+    return (zombiehorde);
 }

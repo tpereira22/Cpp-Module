@@ -1,5 +1,6 @@
 #ifndef CONTACTS_H
 # define CONTACTS_H
+
 # include <iostream>
 
 class Contacts

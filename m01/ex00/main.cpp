@@ -6,7 +6,7 @@ Zombie* newZombie( std::string name );
 
 int main(void)
 {
-    Zombie zombie1("ALEX");
+    Zombie zombie1("Joao");
     Zombie zombie2("YEY");
 
     zombie1.announce();

@@ -9,12 +9,11 @@ private:
     std::string  _name;
 
 public:
-    Zombie(std::string name);
     Zombie(void);
     ~Zombie();
 
     void    announce( void );
-    // void    set_name(std::string name);
+    void    setName(std::string name);
 };
 
 #endif
