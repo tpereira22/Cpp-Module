@@ -4,7 +4,7 @@ FragTrap::FragTrap(void) : ClapTrap("")
 {
     std::cout << "Default FragTrap Constructor" << std::endl;
     this->_hitPoints = 100;
-    this->_energyPoints = 100;
+    this->_energyPoints = 100; 
     this->_attackDamage = 30;
 }
 
@@ -29,6 +29,7 @@ FragTrap::~FragTrap(void)
 
 FragTrap    &FragTrap::operator=(FragTrap const &rhs)
 {
+    std::cout << "Assignment FragTrap Operator" << std::endl;
     this->_name = rhs._name;
     this->_hitPoints = rhs._hitPoints;
     this->_energyPoints = rhs._energyPoints;
