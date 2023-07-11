@@ -6,7 +6,7 @@ OBJS		= $(SRCS:.cpp=.o)
 
 RM		= rm -f
 
-CC		= g++ -Wall -Wextra -Werror -g -fsanitize=address -std=c++98 -Wshadow
+CC		= clang++ -Wall -Wextra -Werror -g -fsanitize=address -std=c++98 -Wshadow
 
 .c.o:
 			@$(CC) -c $< -o $@

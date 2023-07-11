@@ -6,11 +6,13 @@ Cat::Cat(void)
     this->type = "Cat";
     this->brain = new Brain();
 }
+
 Cat::Cat(Cat const &copy)
 {
     std::cout << "Cat Copy Constructor" << std::endl;
     *this = copy;
 }
+
 Cat::~Cat(void)
 {
     std::cout << "Cat Destructor" << std::endl;
