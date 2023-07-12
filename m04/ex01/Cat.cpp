@@ -34,3 +34,11 @@ std::string Cat::getType(void) const
 {
     return this->type;
 }
+
+void    Cat::printIdea(void) const
+{
+    int random = rand()%100;
+    
+    std::string *ideas = this->brain->getIdeas();
+    std::cout << ideas[random] << std::endl;
+}

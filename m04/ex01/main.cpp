@@ -3,27 +3,25 @@
 
 int main(void)
 {
-	Animal	animals[10];
-	int	i;
+	int	size = 4;
+	Animal	*animals[size];
 
-	i = 0;
-	while (i < 10)
+	for (int i = 0; i < size; i++)
 	{
 		if (i % 2 == 0)
 			animals[i] = new Dog();
 		else
 			animals[i] = new Cat();
-		i++;
 	}
-	i = 0;
-	while (i < 10)
+	for (int i = 0; i < size; i++)
 	{
-		if (i % 2 == 0)
-			delete animals[i];
-		else
-			delete animals[i];
-		i++;
+		animals[i]->printIdea();
 	}
+	for (int i = 0; i < size; i++)
+	{
+		delete animals[i];
+	}
+
 	// const Animal *j = new Dog();
 	// const Animal *i = new Cat();
 

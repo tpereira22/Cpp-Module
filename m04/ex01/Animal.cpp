@@ -32,3 +32,5 @@ std::string Animal::getType(void) const
 {
     return this->type;
 }
+
+void Animal::printIdea(void) const {};

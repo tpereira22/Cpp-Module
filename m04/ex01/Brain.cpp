@@ -2,7 +2,11 @@
 
 Brain::Brain(void)
 {
+    int k = 0;
+
     std::cout << "Brain Default Constructor" << std::endl;
+    for (int i = 0; i < 100; i++)
+        this->ideas[i] = "Idea nr " + std::to_string(k++);
 }
 
 Brain::Brain(Brain const &copy)
@@ -19,4 +23,9 @@ Brain::~Brain(void)
 Brain   &Brain::operator=(Brain const &rhs)
 {
     return *this;
+}
+
+std::string *Brain::getIdeas(void)
+{
+    return this->ideas;
 }

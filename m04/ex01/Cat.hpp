@@ -18,6 +18,7 @@ public:
 
     void        makeSound(void) const;
     std::string getType(void) const;
+    void        printIdea(void) const;
 };
 
 #endif

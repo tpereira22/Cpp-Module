@@ -5,7 +5,7 @@
 
 class Brain
 {
-protected:
+private:
     std::string ideas[100];
 public:
     Brain(void);
@@ -13,6 +13,7 @@ public:
     ~Brain(void);
 
     Brain   &operator=(Brain const &rhs);
+    std::string *getIdeas(void);
 };
 
 #endif
