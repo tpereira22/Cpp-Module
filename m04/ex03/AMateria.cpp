@@ -2,30 +2,19 @@
 #include "Ice.hpp"
 
 
-AMateria::AMateria(void) : _type("")
-{
-    std::cout << "Abstract Materia default Constr" << std::endl;
-}
+AMateria::AMateria(void) : _type("") {}
 
-AMateria::AMateria(std::string const &type) : _type(type)
-{
-    std::cout << "Abstract Materia string Constr" << std::endl;
-}
+AMateria::AMateria(std::string const &type) : _type(type) {}
 
 AMateria::AMateria(AMateria const &copy)
 {
-    std::cout << "Abstract Materia copy Constr" << std::endl;
     *this = copy;
 }
 
-AMateria::~AMateria(void)
-{
-    std::cout << "Abstract Materia destr" << std::endl;
-}
+AMateria::~AMateria(void) {}
 
 AMateria    &AMateria::operator=(AMateria const &copy)
 {
-    std::cout << "Abstract Materia Assignment" << std::endl;
     this->_type = copy._type;
     return *this;
 }

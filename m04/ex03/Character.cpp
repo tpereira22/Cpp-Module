@@ -1,18 +1,11 @@
 #include "Character.hpp"
 
-Character::Character(void) : _name(""), _inventory{ nullptr }
-{
-    std::cout << "Char default constr" << std::endl;
-}
+Character::Character(void) : _name(""), _inventory{ nullptr } {}
 
-Character::Character(std::string name) : _name(name), _inventory{ nullptr }
-{
-    std::cout << "Char string constr" << std::endl;
-}
+Character::Character(std::string name) : _name(name), _inventory{ nullptr } {}
 
 Character::Character(Character const &copy) : _name(copy._name), _inventory{ nullptr }
 {
-    std::cout << "Char copy constr" << std::endl;
     *this = copy;
 }
 
@@ -23,7 +16,6 @@ Character::~Character(void)
         if (this->_inventory[i] != nullptr)
             delete this->_inventory[i];
     }
-    std::cout << "Char destr" << std::endl;
 }
 
 Character   &Character::operator=(Character const &copy)
@@ -48,6 +40,11 @@ std::string const   &Character::getName() const
 
 void                Character::equip(AMateria* m)
 {
+    if (m == nullptr)
+    {
+        std::cout << "Can't equip empty materia !" << std::endl;
+        return ;
+    }
     for (int i = 0; i < 4; i++)
     {
         if (this->_inventory[i] == nullptr)

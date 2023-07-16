@@ -1,19 +1,10 @@
 #include "Cure.hpp"
 
-Cure::Cure(void) : AMateria("cure")
-{
-    std::cout << "Cure Constr" << std::endl;
-}
+Cure::Cure(void) : AMateria("cure") {}
 
-Cure::Cure(Cure const &copy) : AMateria(copy)
-{
+Cure::Cure(Cure const &copy) : AMateria(copy) {}
 
-}
-
-Cure::~Cure(void)
-{
-    std::cout << "Cure Destr" << std::endl;
-}
+Cure::~Cure(void) {}
 
 Cure    &Cure::operator=(Cure const &rhs)
 {

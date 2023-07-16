@@ -1,13 +1,10 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(void) : _materias{ nullptr }
-{
-    std::cout << "MateriaSource default constr" << std::endl;
-}
+MateriaSource::MateriaSource(void) : _materias{ nullptr } {}
 
 MateriaSource::MateriaSource(MateriaSource const &copy)
 {
-    std::cout << "MateriaSource copy constr" << std::endl;
+    *this = copy;
 }
 
 MateriaSource::~MateriaSource(void)
@@ -17,11 +14,21 @@ MateriaSource::~MateriaSource(void)
         if (this->_materias[i] != nullptr)
             delete this->_materias[i];
     }
-    std::cout << "MateriaSource destr" << std::endl;
 }
 
 MateriaSource   &MateriaSource::operator=(MateriaSource const &rhs)
 {
+    for (int i = 0; i < 4; i++)
+    {
+        if (rhs._materias[i] != nullptr)
+        {
+            if (this->_materias[i] != nullptr)
+                delete _materias[i];
+            this->_materias[i] = rhs._materias[i]->clone();
+        }
+        else
+            this->_materias[i] = nullptr;
+    }
     return *this;
 }
 
@@ -38,13 +45,15 @@ void        MateriaSource::learnMateria(AMateria *materia)
         }
     }
     std::cout << "MateriaSource Inventory is Full! Can't learn new Materia!" << std::endl;
+    std::cout << materia->getType() << " was deleted !" << std::endl;
+    delete materia;
 }
 
 AMateria    *MateriaSource::createMateria(std::string const &type)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (this->_materias[i]->getType() == type)
+        if (this->_materias[i] != nullptr && this->_materias[i]->getType() == type)
         {
             std::cout << "Materia " << type;
             std::cout << " was created!" << std::endl;
