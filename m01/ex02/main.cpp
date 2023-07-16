@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	std::string     stringVAR = "HI THIS IS BRAIN";
+	std::string     stringVAR = "HI THIS IS _brain";
 	std::string     *stringPTR = &stringVAR;
 	std::string     &stringREF = stringVAR;
 

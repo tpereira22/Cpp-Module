@@ -8,17 +8,18 @@
 class Cat : public Animal
 {
 private:
-    Brain   *brain;
+    Brain   *_brain;
 public:
     Cat(void);
     Cat(Cat const &copy);
-    ~Cat(void);
+    virtual ~Cat(void);
 
     Cat &operator=(Cat const &rhs);
 
     void        makeSound(void) const;
     std::string getType(void) const;
-    void        printIdea(void) const;
+    Brain       *getBrain(void) const;
+    void        printRandomIdea(void) const;
 };
 
 #endif

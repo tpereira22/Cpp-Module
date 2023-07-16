@@ -1,20 +1,20 @@
-#ifndef DOG_H
-# define DOG_H
+#ifndef CAT_H
+# define CAT_H
 
 # include <iostream>
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
-class Dog : public Animal
+class Cat : public AAnimal
 {
 private:
     Brain   *_brain;
 public:
-    Dog(void);
-    Dog(Dog const &copy);
-    virtual ~Dog(void);
+    Cat(void);
+    Cat(Cat const &copy);
+    virtual ~Cat(void);
 
-    Dog &operator=(Dog const &rhs);
+    Cat &operator=(Cat const &rhs);
 
     void        makeSound(void) const;
     std::string getType(void) const;
