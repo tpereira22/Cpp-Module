@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-
+class AForm;
 
 class Bureaucrat
 {
@@ -18,13 +18,16 @@ public:
 
     Bureaucrat &operator=(Bureaucrat const &copy);
 
-    std::string const   getName(void);
-    int                 getGrade(void);
+    std::string const   getName(void) const;
+    int                 getGrade(void) const;
     
     void    setGrade(int grade);
 
     void    gradeIncrement(void);
     void    gradeDecrement(void);
+
+    void    signForm(AForm &form) const;
+    void    executeForm(AForm const &form);
 
     struct  GradeTooHighException : public std::exception
     {
@@ -37,6 +40,6 @@ public:
     };
 };
 
-std::ostream    &operator<<(std::ostream &o, Bureaucrat &rhs);
+std::ostream    &operator<<(std::ostream &o, Bureaucrat const &rhs);
 
 #endif

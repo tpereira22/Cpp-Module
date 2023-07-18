@@ -5,27 +5,32 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 private:
     std::string const   _name;
     bool                _signed;
     int const           _gradeReqSign;
     int const           _gradeReqExec;
-    Form(void);
+protected:
+    std::string         _target;
 public:
-    Form(std::string name, int gradeReqSign, int gradeReqExec);
-    Form(Form const &copy);
-    ~Form(void);
+    AForm(void);
+    AForm(std::string name, int gradeReqSign, int gradeReqExec);
+    AForm(AForm const &copy);
+    virtual ~AForm(void);
 
-    Form    &operator=(Form const &copy);
+    AForm    &operator=(AForm const &copy);
 
     std::string const   getName(void) const;
     bool                isSigned(void) const;
+    bool                isExec(void) const;
     int const           getGradeReqSign(void) const;
     int const           getGradeReqExec(void) const;
 
     void    beSigned(Bureaucrat const &b);
+    virtual void    execute(Bureaucrat const &executor) const = 0;
+    bool            checkExec(Bureaucrat const &executor) const;
 
     struct GradeTooHighException : public std::exception
     {
@@ -41,9 +46,13 @@ public:
     {
         virtual const char *what() const throw();
     };
-    
+
+    struct FormExecException : public std::exception
+    {
+        virtual const char *what() const throw();
+    };
 };
 
-std::ostream    &operator<<(std::ostream &o, Form const &rhs);
+std::ostream    &operator<<(std::ostream &o, AForm const &rhs);
 
 #endif

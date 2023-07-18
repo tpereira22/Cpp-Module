@@ -1,9 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void) : _name("Default")
-{
-
-}
+Bureaucrat::Bureaucrat(void) : _name("Default") {}
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
 {
@@ -21,14 +18,10 @@ Bureaucrat::Bureaucrat(Bureaucrat const &copy) : _name(copy._name)
     *this = copy;
 }
 
-Bureaucrat::~Bureaucrat(void)
-{
-
-}
+Bureaucrat::~Bureaucrat(void) {}
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy)
 {
-    std::cout << "= Operator" << std::endl;
     if (this != &copy)
     {
         this->_grade = copy._grade;
@@ -36,25 +29,41 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy)
     return *this;
 }
 
-std::string const Bureaucrat::getName(void)
-{
-    return this->_name;
-}
-
+// Inc/Dec
 void    Bureaucrat::gradeIncrement(void)
 {
-    if (this->_grade == 1)
-        throw Bureaucrat::GradeTooHighException();
-    else
-        this->_grade--;
+    try
+    {
+        if (this->_grade == 1)
+            throw Bureaucrat::GradeTooHighException();
+        else
+            this->_grade--;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << this->_name << " Grade Increment is invalid! " << e.what() << std::endl;
+    }
 }
 
 void    Bureaucrat::gradeDecrement(void)
 {
-    if (this->_grade == 150)
-        throw Bureaucrat::GradeTooLowException();
-    else
-        this->_grade++;
+    try
+    {
+        if (this->_grade == 150)
+            throw Bureaucrat::GradeTooLowException();
+        else
+            this->_grade++;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << this->_name << " Grade Decrement is invalid! " << e.what() << std::endl;
+    }
+}
+
+// Getters
+std::string const Bureaucrat::getName(void)
+{
+    return this->_name;
 }
 
 int         Bureaucrat::getGrade(void)
@@ -64,12 +73,19 @@ int         Bureaucrat::getGrade(void)
 
 void        Bureaucrat::setGrade(int grade)
 {
-    if (grade < 1)
-        throw Bureaucrat::GradeTooLowException();
-    else if (grade > 150)
-        throw Bureaucrat::GradeTooHighException();
-    else
-        this->_grade = grade;
+    try
+    {
+        if (grade < 1)
+            throw Bureaucrat::GradeTooLowException();
+        else if (grade > 150)
+            throw Bureaucrat::GradeTooHighException();
+        else
+            this->_grade = grade;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Can't set " << this->_name << " grade. Error: " << e.what() << std::endl;
+    }
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
