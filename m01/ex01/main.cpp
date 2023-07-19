@@ -16,17 +16,20 @@ Zombie  *zombieHorde( int N, std::string name );
 
 int main(void)
 {
-    Zombie  *zombietest;
+    Zombie  *zombietest1;
 
-    zombietest = zombieHorde(4, "Horde 1");
-    zombietest[0].announce();
-    zombietest[3].announce();
-    zombietest[5].announce();
-    delete [] zombietest;
-    
-    zombietest = zombieHorde(2, "Horde 2");
-    zombietest[0].announce();
-    zombietest[3].announce();
-    delete [] zombietest;
+    zombietest1 = zombieHorde(4, "Horde 1");
+    zombietest1[0].announce();
+    zombietest1[3].announce();
+    std::cout << std::endl;
+
+    Zombie  *zombietest2;
+
+    zombietest2 = zombieHorde(2, "Horde 2");
+    zombietest2[0].announce();
+    zombietest2[1].announce();
+    std::cout << std::endl;
+    delete [] zombietest1;
+    delete [] zombietest2;
 
 }

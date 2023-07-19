@@ -18,16 +18,21 @@ Zombie* newZombie( std::string name );
 
 int main(void)
 {
-    Zombie zombie1("Joao");
-    Zombie zombie2("YEY");
+    Zombie zombie1("Ze");
+    Zombie zombie2("Manel");
 
     zombie1.announce();
     zombie2.announce();
+
+    std::cout << std::endl;
 
     Zombie  *zombie3 = newZombie("Tiago");
     zombie3->announce();
     delete zombie3;
 
-    randomChump("ZE");
+    std::cout << std::endl;
+
+    randomChump("Zezinho");
+    std::cout << std::endl;
 
 }
