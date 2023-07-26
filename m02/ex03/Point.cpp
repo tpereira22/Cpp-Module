@@ -19,10 +19,7 @@ Point::Point(Fixed const &x, Fixed const &y) : _x(x), _y(y) {}
 Point::Point(Point const &copy) : _x(copy._x), _y(copy._y) {}
 
 // Destructor
-Point::~Point(void)
-{
-
-}
+Point::~Point(void) {}
 
 // Assigment Operator Overload
 Point   &Point::operator=(Point const &rhs)
@@ -33,7 +30,6 @@ Point   &Point::operator=(Point const &rhs)
 Point   Point::operator-(Point const &rhs) const
 {
     return Point(this->getX() - rhs.getX(), this->getY() - rhs.getY());
-    // Fixed   temp;
 }
 
 // Getters

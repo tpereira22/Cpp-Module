@@ -51,7 +51,6 @@ Fixed   &Fixed::operator=(Fixed const &rhs)
 
 int Fixed::getRawBits(void) const
 {
-    //std::cout << "getRawBits Function Called" << std::endl;
     return this->_fPointValue;
 }
 

@@ -19,27 +19,33 @@ int main()
     Fixed   c(2);
     Fixed   d;
 
+    std::cout << "------> COMPARISON OPERATORS TEST <------" << std::endl;
     if (a > b)
-        std::cout << "a > b" << std::endl;
+        std::cout << "a is bigger" << std::endl;
     else
-        std::cout << "false" << std::endl;
-    
+        std::cout << "b is bigger" << std::endl;
     if (a >= c)
-        std::cout << "a >= b" << std::endl;
+        std::cout << "a is bigger or equal" << std::endl;
     else
-        std::cout << "false" << std::endl;
-
+        std::cout << "c is bigger" << std::endl;
     if (a < b)
-        std::cout << "a < b" << std::endl;
+        std::cout << "a is smaller" << std::endl;
     else
-        std::cout << "false" << std::endl;
-
+        std::cout << "b is smaller" << std::endl;
+    if (a <= b)
+        std::cout << "a is smaller or equal" << std::endl;
+    else
+        std::cout << "b is smaller" << std::endl;
     if (a == c)
-        std::cout << "a == b" << std::endl;
+        std::cout << "a == c" << std::endl;
     else
-        std::cout << "false" << std::endl;
-
-    std::cout << "--------------------------" << std::endl;
+        std::cout << "a != c" << std::endl;
+    if (a != b)
+        std::cout << "a != b" << std::endl;
+    else
+        std::cout << "a == b" << std::endl;
+    std::cout << std::endl;
+    std::cout << "------> ARITHMETIC OPERATORS TEST <------" << std::endl;
     d = a + b;
     std::cout << d << std::endl;
     d = a - b;
@@ -48,39 +54,18 @@ int main()
     std::cout << d << std::endl;
     d = a / b;
     std::cout << d << std::endl;
-
+    std::cout << std::endl;
+    std::cout << "------> INC/DEC OPERATORS TEST <------" << std::endl;
+    std::cout << "a-> " << a++ << "       b-> " << b-- << std::endl;
+    std::cout << "a-> " <<  a << "       b-> " << b  << std::endl;
+    std::cout << "a-> " <<  ++a << "       b-> " << --b  << std::endl;
     std::cout << "--------------------------" << std::endl;
-    std::cout << "a-> " << a << "       b-> " << b << std::endl;
-    b = ++a;
-    std::cout << "a-> " <<  a << "       b-> " << b  << std::endl;
-    --a;
-    std::cout << "a-> " <<  a << "       b-> " << b  << std::endl;
-    b = a++;
-    std::cout << "a-> " <<  a << "       b-> " << b  << std::endl;
-    b = a--;
-    std::cout << "a-> " <<  a << "       b-> " << b  << std::endl;
-    std::cout << "--------------------------" << std::endl;
-
-    std::cout << Fixed::min(a, b) <<  std::endl;
-    a++;
-    a++;
-    a++;
-    std::cout << Fixed::min(a, b) <<  std::endl;
-    std::cout << Fixed::max(a, b) <<  std::endl;
-
-    // Subject test
-    // Fixed   a;
-    // Fixed const b(Fixed(5.05f) * Fixed(2));
-
-    // std::cout << a << std::endl;
-    // std::cout << ++a << std::endl;
-    // std::cout << a << std::endl;
-    // std::cout << a++ << std::endl;
-    // std::cout << a << std::endl;
-
-    // std::cout << b << std::endl;
-
-    // std::cout << Fixed::max(a, b) << std::endl;
-    
+    std::cout << std::endl;
+    std::cout << "min -> " << Fixed::min(a, b) <<  std::endl;
+    std::cout << "max -> " << Fixed::max(a, b) <<  std::endl;
+    Fixed const e(10);
+    Fixed const f(15);
+    std::cout << "min -> " << Fixed::min(e, f) <<  std::endl;
+    std::cout << "max -> " << Fixed::max(e, f) <<  std::endl;
     return (0);
 }
