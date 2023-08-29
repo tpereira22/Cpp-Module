@@ -18,7 +18,6 @@
 
 class Dog : public Animal
 {
-private:
 public:
     Dog(void);
     Dog(Dog const &copy);
