@@ -18,8 +18,6 @@
 
 class   ScavTrap : public ClapTrap
 {
-private:
-
 public:
     ScavTrap(void);
     ScavTrap(std::string name);

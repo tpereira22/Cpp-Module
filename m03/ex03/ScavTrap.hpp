@@ -28,7 +28,7 @@ public:
 
     ScavTrap        &operator=(ScavTrap const &rhs);
 
-    virtual void    attack(const std::string &target);
+    void    attack(const std::string &target);
     void            guardGate(void);
 
     int             getEnergyPoints(void);

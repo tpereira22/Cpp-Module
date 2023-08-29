@@ -12,7 +12,6 @@ int main(void)
 	delete j;
 	delete i;
 
-
 	// int	size = 4;
 	// Animal	*animals[size];
 

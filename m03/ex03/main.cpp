@@ -15,6 +15,7 @@
 int main(void)
 {
     ClapTrap    clapTrap("clapTrap");
+    std::cout << std::endl;
     ScavTrap    scavTrap("scavTrap");
     FragTrap    fragTrap("fragTrap");
     std::cout << std::endl;

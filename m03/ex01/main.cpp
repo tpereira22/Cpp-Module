@@ -33,5 +33,4 @@ int main(void)
     
     scavTrap.guardGate();
     std::cout << std::endl;
-    
 }
