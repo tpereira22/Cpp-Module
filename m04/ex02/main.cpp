@@ -15,8 +15,8 @@
 
 int main(void)
 {
-    //AAnimal animal1;
-    //AAnimal animal2 = new Animal();
+    // AAnimal animal1;
+    // AAnimal animal2 = new Animal();
     AAnimal *cat = new Cat();
     AAnimal *dog = new Dog();
 
