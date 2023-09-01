@@ -12,16 +12,14 @@
 
 #include "Animal.hpp"
 
-Animal::Animal(void)
+Animal::Animal(void) : type("No type")
 {
     std::cout << "Animal Default Constructor" << std::endl;
-    this->type = "No type";
 }
 
-Animal::Animal(Animal const &copy)
+Animal::Animal(Animal const &copy) : type(copy.type)
 {
     std::cout << "Animal Copy Constructor" << std::endl;
-    *this = copy;
 }
 
 Animal::~Animal(void)

@@ -12,14 +12,14 @@
 
 #include "Cat.hpp"
 
-Cat::Cat(void)
+Cat::Cat(void) : AAnimal()
 {
     std::cout << "Cat Default Constructor" << std::endl;
     this->type = "Cat";
     this->_brain = new Brain();
 }
 
-Cat::Cat(Cat const &copy)
+Cat::Cat(Cat const &copy) : AAnimal(copy)
 {
     std::cout << "Cat Copy Constructor" << std::endl;
     this->type = copy.type;

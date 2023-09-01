@@ -12,10 +12,9 @@
 
 #include "AAnimal.hpp"
 
-AAnimal::AAnimal(void)
+AAnimal::AAnimal(void) : type("No type")
 {
     std::cout << "Animal Default Constructor" << std::endl;
-    this->type = "No type";
 }
 
 AAnimal::AAnimal(AAnimal const &copy)
