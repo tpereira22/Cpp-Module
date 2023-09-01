@@ -7,7 +7,7 @@
 
 int main(void)
 {
-    std::srand(static_cast<unsigned>(std::time(nullptr)));
+    std::srand(static_cast<unsigned>(std::time(NULL)));
     
     std::cout << "-------> TEST INTERN ------->" << std::endl;
     try

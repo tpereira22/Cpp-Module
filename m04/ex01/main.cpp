@@ -38,7 +38,7 @@ int main(void)
 		}
 		for (int i = 0; i < size; i++)
 		{
-			animals[i]->printRandomIdea();
+			animals[i]->printIdea();
 		}
 		for (int i = 0; i < size; i++)
 		{
@@ -53,7 +53,7 @@ int main(void)
 			Dog dog2 = dog1;
 		}
 		std::cout << "dog1 still exists -> ";
-		dog1.printRandomIdea();
+		dog1.printIdea();
 	}
 	std::cout << std::endl << std::endl;
 	{

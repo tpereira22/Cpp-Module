@@ -31,6 +31,7 @@ WrongCat::~WrongCat(void)
 
 WrongCat    &WrongCat::operator=(WrongCat const &rhs)
 {
+    this->type = rhs.type;
     return *this;
 }
 

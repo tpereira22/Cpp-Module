@@ -57,10 +57,8 @@ Brain       *Dog::getBrain(void) const
     return this->_brain;
 }
 
-void Dog::printRandomIdea(void) const
+void Dog::printIdea(void) const
 {
-    int random = rand()%100;
-    
     std::string *ideas = this->_brain->getIdeas();
-    std::cout << ideas[random] << std::endl;
+    std::cout << "Dog " << ideas[0] << std::endl;
 }

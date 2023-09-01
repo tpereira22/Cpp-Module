@@ -21,9 +21,9 @@ int main(void)
     AAnimal *dog = new Dog();
 
     std::cout << std::endl;
-    cat->printRandomIdea();
+    cat->printIdea();
     cat->makeSound();
-    dog->printRandomIdea();
+    dog->printIdea();
     dog->makeSound();
     std::cout << std::endl;
 

@@ -27,7 +27,7 @@ public:
     AAnimal  &operator=(AAnimal const &rhs);
     virtual void    makeSound(void) const = 0;
     std::string getType(void) const;
-    virtual void printRandomIdea(void) const = 0;
+    virtual void printIdea(void) const = 0;
 };
 
 #endif

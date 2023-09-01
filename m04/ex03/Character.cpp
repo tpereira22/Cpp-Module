@@ -12,12 +12,19 @@
 
 #include "Character.hpp"
 
-Character::Character(void) : _name(""), _inventory{ nullptr } {}
+Character::Character(void) : _name("") {
+    for (int i = 0; i < 4; i++)
+        this->_inventory[i] = NULL;
+}
 
-Character::Character(std::string name) : _name(name), _inventory{ nullptr } {}
+Character::Character(std::string name) : _name(name) {
+    for (int i = 0; i < 4; i++)
+        this->_inventory[i] = NULL;
+}
 
-Character::Character(Character const &copy) : _name(copy._name), _inventory{ nullptr }
-{
+Character::Character(Character const &copy) : _name(copy._name) {
+    for (int i = 0; i < 4; i++)
+        this->_inventory[i] = NULL;
     *this = copy;
 }
 
@@ -25,7 +32,7 @@ Character::~Character(void)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (this->_inventory[i] != nullptr)
+        if (this->_inventory[i] != NULL)
             delete this->_inventory[i];
     }
 }
@@ -35,12 +42,12 @@ Character   &Character::operator=(Character const &copy)
     this->_name = copy._name;
     for (int i = 0; i < 4; i++)
     {
-        if (this->_inventory[i] != nullptr)
+        if (this->_inventory[i] != NULL)
             delete this->_inventory[i];
-        if (copy._inventory[i] != nullptr)
+        if (copy._inventory[i] != NULL)
             this->_inventory[i] = copy._inventory[i]->clone();
         else
-            this->_inventory[i] = nullptr;
+            this->_inventory[i] = NULL;
     }
     return *this;
 }
@@ -52,14 +59,14 @@ std::string const   &Character::getName() const
 
 void                Character::equip(AMateria* m)
 {
-    if (m == nullptr)
+    if (m == NULL)
     {
         std::cout << "Can't equip empty materia !" << std::endl;
         return ;
     }
     for (int i = 0; i < 4; i++)
     {
-        if (this->_inventory[i] == nullptr)
+        if (this->_inventory[i] == NULL)
         {
             this->_inventory[i] = m;
             std::cout << "Materia " << m->getType();
@@ -76,11 +83,11 @@ void                Character::unequip(int idx)
         std::cout << "Slot " << idx << " doesn't exist!" << std::endl;
     else
     {
-        if (this->_inventory[idx] != nullptr)
+        if (this->_inventory[idx] != NULL)
         {
             std::cout << "Materia " << this->_inventory[idx]->getType(); 
             std::cout << " successfully unequiped in slot " << idx << std::endl;
-            this->_inventory[idx] = nullptr;
+            this->_inventory[idx] = NULL;
         }
         else
             std::cout << "Slot was already empty!" << std::endl;
@@ -94,7 +101,7 @@ void                Character::use(int idx, ICharacter &target)
         std::cout << "Slot " << idx << " doesn't exist! Can't Attack ";
         std::cout << target.getName() << std::endl;
     }
-    else if (this->_inventory[idx] == nullptr)
+    else if (this->_inventory[idx] == NULL)
     {
         std::cout << "Slot " << idx << " has no materia. Can't Attack ";
         std::cout << target.getName() << std::endl;

@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    std::srand(static_cast<unsigned>(std::time(nullptr)));
+    std::srand(static_cast<unsigned>(std::time(NULL)));
 
     std::cout << "-------> TEST ShrubberyCreationForm ------->" << std::endl;
     AForm   *form1 = new ShrubberyCreationForm("Tree"); 

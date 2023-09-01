@@ -114,12 +114,12 @@ int main(void)
 
         std::cout << std::endl;
         ze->use(0, *manel); // testing use
+        ze->use(2, *manel); // testing in range slot but with no materia
         manel->use(0, *ze);
         manel->use(1, *ze);
         manel->use(2, *ze);
         manel->use(5, *ze); // testing out of range slots
         manel->use(-1, *ze);
-        ze->use(2, *manel); // testing in range slot but with no materia
         std::cout << std::endl;
 
         manel->unequip(2); // test unequip materia

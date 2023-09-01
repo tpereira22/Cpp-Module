@@ -45,4 +45,4 @@ std::string Animal::getType(void) const
     return this->type;
 }
 
-void Animal::printRandomIdea(void) const {};
+void Animal::printIdea(void) const {};

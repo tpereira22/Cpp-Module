@@ -57,10 +57,8 @@ Brain       *Cat::getBrain(void) const
     return this->_brain;
 }
 
-void    Cat::printRandomIdea(void) const
+void    Cat::printIdea(void) const
 {
-    int random = rand()%100;
-    
     std::string *ideas = this->_brain->getIdeas();
-    std::cout << ideas[random] << std::endl;
+    std::cout << "Cat " << ideas[0] << std::endl;
 }

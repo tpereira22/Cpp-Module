@@ -38,5 +38,6 @@ std::string const   &AMateria::getType() const
 
 void        AMateria::use(ICharacter &target)
 {
+    (void)target;
     std::cout << "AMateria use" << std::endl; //this should never be printed
 }

@@ -12,7 +12,7 @@
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name): _name(name), _weapon(nullptr)
+HumanB::HumanB(std::string name): _name(name), _weapon(NULL)
 {
     std::cout << "HumanB named " << name << " was created.\n";
 }
@@ -24,7 +24,7 @@ HumanB::~HumanB(void)
 
 void    HumanB::attack(void)
 {
-    if (this->_weapon == nullptr)
+    if (this->_weapon == NULL)
         std::cout << "Can't attack! No weapon equiped!" << std::endl;
     else
         std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;

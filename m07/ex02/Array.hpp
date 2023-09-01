@@ -20,7 +20,7 @@ public:
         _array = new T[n];
     }
 
-    Array(Array const &copy) : _array(nullptr), _size(0)
+    Array(Array const &copy) : _array(NULL), _size(0)
     {
         *this = copy;
     }
@@ -33,7 +33,7 @@ public:
     Array   &operator=(Array const &copy)
     {
         this->_size = copy._size;
-        if (this->_array != nullptr)
+        if (this->_array != NULL)
             delete[] _array;
         this->_array = new T[this->_size];
         for (int i = 0; i < this->_size; i++)

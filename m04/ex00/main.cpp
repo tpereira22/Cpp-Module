@@ -36,7 +36,6 @@ int main(void)
     wrongCatAnimal->makeSound();
     wrongCat->makeSound();
 
-
     std::cout << std::endl;
     delete animal;
     delete dog;
