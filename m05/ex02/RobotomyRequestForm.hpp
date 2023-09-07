@@ -8,8 +8,9 @@
 class RobotomyRequestForm : public AForm
 {
 private:
-public:
     RRF(void);
+    static int counter;
+public:
     RRF(std::string const target);
     RRF(RRF const &copy);
     ~RRF(void);

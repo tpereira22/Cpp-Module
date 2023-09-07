@@ -20,19 +20,19 @@ public:
 
     std::string const   getName(void);
     int                 getGrade(void);
-    
-    void    setGrade(int grade);
 
     void    gradeIncrement(void);
     void    gradeDecrement(void);
 
-    struct  GradeTooHighException : public std::exception
+    class  GradeTooHighException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 
-    struct  GradeTooLowException : public std::exception
+    class  GradeTooLowException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 };

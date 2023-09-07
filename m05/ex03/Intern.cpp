@@ -11,6 +11,7 @@ Intern::~Intern(void) {}
 
 Intern  &Intern::operator=(Intern const &copy)
 {
+    (void)copy;
     return *this;
 }
 
@@ -28,8 +29,6 @@ AForm   *Intern::makePresidential(std::string target)
 {
     return (new PresidentialPardonForm(target));
 }
-
-using FormCreator = AForm* (*)(std::string);
 
 AForm   *Intern::makeForm(std::string formName, std::string formTarget)
 {
@@ -56,5 +55,5 @@ AForm   *Intern::makeForm(std::string formName, std::string formTarget)
 
 const char *Intern::InternException::what() const throw()
 {
-    return ("Intern couldn't make form. File name does not exist !");
+    return ("Intern couldn't make form. Form name does not exist !");
 }

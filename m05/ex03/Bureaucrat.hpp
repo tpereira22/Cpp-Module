@@ -29,13 +29,15 @@ public:
     void    signForm(AForm &form) const;
     void    executeForm(AForm const &form);
 
-    struct  GradeTooHighException : public std::exception
+    class  GradeTooHighException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 
-    struct  GradeTooLowException : public std::exception
+    class  GradeTooLowException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 };

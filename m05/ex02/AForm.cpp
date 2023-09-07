@@ -46,12 +46,12 @@ bool                AForm::isSigned(void) const
     return this->_signed;
 }
 
-int const           AForm::getGradeReqSign(void) const
+int                 AForm::getGradeReqSign(void) const
 {
     return this->_gradeReqSign;
 }
 
-int const           AForm::getGradeReqExec(void) const
+int                 AForm::getGradeReqExec(void) const
 {
     return this->_gradeReqExec;
 }

@@ -17,6 +17,7 @@ PPF::~PPF(void) {}
 
 PPF &PPF::operator=(PPF const &copy)
 {
+	this->_target = copy._target;
     return *this;
 }
 

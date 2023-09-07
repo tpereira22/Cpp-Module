@@ -22,23 +22,26 @@ public:
 
     std::string const   getName(void) const;
     bool                isSigned(void) const;
-    int const           getGradeReqSign(void) const;
-    int const           getGradeReqExec(void) const;
+    int                 getGradeReqSign(void) const;
+    int                 getGradeReqExec(void) const;
 
     void    beSigned(Bureaucrat const &b);
 
-    struct GradeTooHighException : public std::exception
+    class GradeTooHighException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 
-    struct GradeTooLowException : public std::exception
+    class GradeTooLowException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 
-    struct FormSignedException : public std::exception
+    class FormSignedException : public std::exception
     {
+    public:
         virtual const char *what() const throw();
     };
     

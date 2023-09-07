@@ -7,7 +7,7 @@ int main(void)
     {
         Bureaucrat a("ze", 10);
         Bureaucrat b("Luis", 1);
-        Bureaucrat c("Manel", 150); 
+        Bureaucrat c("Manel", 150);
         
         std::cout << a << b << c << std::endl;
     }
@@ -22,9 +22,7 @@ int main(void)
     {
         Bureaucrat a("ze", 10);
         Bureaucrat b("Luis", 0);
-        Bureaucrat c("Manel", 151); 
-        
-        std::cout << a << b << c << std::endl;
+        Bureaucrat c("Manel", 151);
     }
     catch(const std::exception& e)
     {
@@ -34,26 +32,42 @@ int main(void)
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "-------> TEST INC/DEC GRADES ------->" << std::endl;
-    try // testing grade inc/dec
+    try // testing valid grade inc/dec
     {
-        Bureaucrat a("ze", 10);
-        Bureaucrat b("Luis", 1);
-        Bureaucrat c("Manel", 150); 
-        
+        Bureaucrat a("ze", 50);
         a.gradeIncrement();
         a.gradeIncrement();
-        b.gradeIncrement();
-        c.gradeIncrement();
-        std::cout << a << b << c << std::endl;
-        std::cout << std::endl;
+        std::cout << a << std::endl;
         a.gradeDecrement();
-        b.gradeDecrement();
-        c.gradeDecrement();
-        c.gradeDecrement();
-        std::cout << a << b << c << std::endl;
+        a.gradeDecrement();
+        a.gradeDecrement();
+        std::cout << a << std::endl;
     }
-        catch(const std::exception& e)
+    catch(const std::exception& e)
     {
         std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Incrementing a bureaucrat to a invalid grade." << std::endl;
+    }
+    std::cout << std::endl;
+    try // testing grade inc
+    {
+        Bureaucrat a("ze", 1);
+        a.gradeIncrement();
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Incrementing a bureaucrat to a invalid grade." << std::endl;
+    }
+    std::cout << std::endl;
+    try // testing grade dec
+    {
+        Bureaucrat a("ze", 150);
+        a.gradeDecrement();
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Decrementing a bureaucrat to a invalid grade." << std::endl;
     }
 }

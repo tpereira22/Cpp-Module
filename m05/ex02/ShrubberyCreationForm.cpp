@@ -17,6 +17,7 @@ SCF::~SCF(void) {}
 
 SCF &SCF::operator=(SCF const &copy)
 {
+	this->_target = copy._target;
     return *this;
 }
 
@@ -25,7 +26,7 @@ void    SCF::execute(Bureaucrat const &executor) const
     if (checkExec(executor))
     {
         std::ofstream    outputFile;
-        outputFile.open(this->_target + "_shrubbery");
+        outputFile.open((this->_target + "_shrubbery").c_str());
         if (!outputFile.is_open())
         {
             std::cout << "Error creating file !" << std::endl;

@@ -8,8 +8,8 @@
 class PresidentialPardonForm : public AForm
 {
 private:
-public:
     PPF(void);
+public:
     PPF(std::string const target);
     PPF(PPF const &copy);
     ~PPF(void);

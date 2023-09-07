@@ -20,21 +20,21 @@ public:
 
     std::string const   getName(void) const;
     int                 getGrade(void) const;
-    
-    void    setGrade(int grade);
 
     void    gradeIncrement(void);
     void    gradeDecrement(void);
 
     void    signForm(Form &form) const;
 
-    struct  GradeTooHighException : public std::exception
+    class  GradeTooHighException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 
-    struct  GradeTooLowException : public std::exception
+    class  GradeTooLowException : public std::exception
     {
+    public:
         virtual const char *what(void) const throw();
     };
 };

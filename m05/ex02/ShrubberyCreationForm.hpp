@@ -9,10 +9,9 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-
-public:
     SCF(void);
-    SCF(std::string const target); // ?
+public:
+    SCF(std::string const target);
     SCF(SCF const &copy);
     ~SCF(void);
     

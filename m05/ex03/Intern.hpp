@@ -21,8 +21,9 @@ public:
 
     AForm   *makeForm(std::string formName, std::string formTarget);
     
-    struct InternException : public std::exception
+    class InternException : public std::exception
     {
+    public:
         virtual const char *what() const throw();
     };
     
