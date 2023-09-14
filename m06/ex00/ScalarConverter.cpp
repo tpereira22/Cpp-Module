@@ -2,16 +2,24 @@
 
 ScalarConverter::ScalarConverter(void)
 {
-
+    _types[0] = "char";
+    _types[1] = "int";
+    _types[2] = "double";
+    _types[3] = "float";
 }
 
-ScalarConverter::ScalarConverter(std::string str)
+ScalarConverter::ScalarConverter(std::string str) : _str(str)
 {
-
+    _types[0] = "char";
+    _types[1] = "int";
+    _types[2] = "double";
+    _types[3] = "float";
+    
 }
 
 ScalarConverter::ScalarConverter(ScalarConverter const &copy)
 {
+    // this->_str = copy._str;
     *this = copy;
 }
 
@@ -22,26 +30,19 @@ ScalarConverter::~ScalarConverter(void)
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &copy)
 {
+    this->_str = copy._str;
     return *this;
 }
 
 void    ScalarConverter::convert(std::string str)
 {
-    std::string type = getType(str);
+    std::string type;
+    removeSpaces(str);
+    type = getType(str);
+    std::cout << str << std::endl;
 
 }
 
-std::string ScalarConverter::getType(std::string str)
-{
-    if (str.empty())
-        return "Unknow";
-    for (char c : str)
-    {
-        if (std::isdigit(c))
-            
-    }
-    
-}
 
 // maybe dont need all this ? 
 void    convertChar()

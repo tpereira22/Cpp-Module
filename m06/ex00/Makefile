@@ -1,20 +1,20 @@
 NAME		= convert
 
-SRCS		= main.cpp ScalarConverter.cpp
+SRCS		= main.cpp ScalarConverter.cpp ParseUtils.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
 RM		= rm -f
 
-CC		= clang++ -Wall -Wextra -Werror -g -fsanitize=address -std=c++98
+CXX		= c++ -Wall -Wextra -Werror -g -fsanitize=address -std=c++98
 
 .c.o:
-			@$(CC) -c $< -o $@
+			@$(CXX) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME): 	$(OBJS)
-			$(CC) $(OBJS) -o $(NAME)
+			$(CXX) $(OBJS) -o $(NAME)
 
 clean:
 			$(RM) $(OBJS)
