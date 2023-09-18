@@ -18,9 +18,7 @@ public:
     ScalarConverter &operator=(ScalarConverter const &copy);
 
     void    convert(std::string str);
-    std::string getType(std::string str);
-
-    void    printConversions(int type);
+    std::string getType(std::string& str);
 
     void    convertChar();
     void    convertInt();

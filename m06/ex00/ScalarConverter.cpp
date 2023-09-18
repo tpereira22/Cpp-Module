@@ -39,10 +39,26 @@ void    ScalarConverter::convert(std::string str)
     std::string type;
     removeSpaces(str);
     type = getType(str);
-    std::cout << str << std::endl;
-
+    if (type.compare("") == 0)
+        return ;
+    std::cout << "str -> " << str << " type -> " << type << std::endl;
 }
 
+std::string ScalarConverter::getType(std::string& str)
+{
+    std::string type;
+    if (checkAfterFirstWord(str))
+        return "";
+    removeAllSpaces(str);
+    type = checkIfPseudo(str);
+    if (type.compare("float") == 0 || type.compare("double") == 0)
+        return type;
+    if (std::isdigit(str[0]) || (str[0] == '-' && std::isdigit(str[1])))
+        type = numberParse(str);
+    else
+        type = charParse(str);
+    return type;
+}
 
 // maybe dont need all this ? 
 void    convertChar()
