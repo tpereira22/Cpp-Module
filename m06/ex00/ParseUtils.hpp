@@ -11,5 +11,7 @@ std::string numberParse(std::string& str);
 std::string charParse(std::string& str);
 std::string checkIfInt(std::string& str);
 std::string parseDecimal(std::string& str);
+std::string checkFloat(std::string& str);
+
 
 #endif

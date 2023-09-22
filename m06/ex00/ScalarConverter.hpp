@@ -20,10 +20,10 @@ public:
     void    convert(std::string str);
     std::string getType(std::string& str);
 
-    void    convertChar();
-    void    convertInt();
-    void    convertFloat();
-    void    convertDouble();
+    void    convertChar(void);
+    void    convertInt(void);
+    void    convertFloat(void);
+    void    convertDouble(void);
 };
 
 #endif

@@ -41,7 +41,21 @@ void    ScalarConverter::convert(std::string str)
     type = getType(str);
     if (type.compare("") == 0)
         return ;
-    std::cout << "str -> " << str << " type -> " << type << std::endl;
+    void (ScalarConverter::*ptr[])() = {
+        &ScalarConverter::convertChar,
+        &ScalarConverter::convertInt,
+        &ScalarConverter::convertDouble,
+        &ScalarConverter::convertFloat
+    };
+    for (int i = 0; i < 4; i++)
+    {
+        if (_types[i].compare(type) == 0)
+        {
+            (this->*ptr[i])();
+            break ;
+        }
+    }
+    // std::cout << "str -> " << str << " type -> " << type << std::endl;
 }
 
 std::string ScalarConverter::getType(std::string& str)
@@ -61,22 +75,22 @@ std::string ScalarConverter::getType(std::string& str)
 }
 
 // maybe dont need all this ? 
-void    convertChar()
+void    ScalarConverter::convertChar(void)
 {
-
+    std::cout << "char" << std::endl;
 }
 
-void    convertInt()
+void    ScalarConverter::convertInt(void)
 {
-
+    std::cout << "int" << std::endl;
 }
 
-void    convertFloat()
+void    ScalarConverter::convertDouble(void)
 {
-
+    std::cout << "double" << std::endl;
 }
 
-void    convertDouble()
+void    ScalarConverter::convertFloat(void)
 {
-
+    std::cout << "float" << std::endl;
 }
