@@ -2,6 +2,7 @@
 # define SCALAR_CONVERTER_H
 
 # include <iostream>
+# include <cstdlib>
 # include "ParseUtils.hpp"
 
 class ScalarConverter
@@ -20,10 +21,10 @@ public:
     void    convert(std::string str);
     std::string getType(std::string& str);
 
-    void    convertChar(void);
-    void    convertInt(void);
-    void    convertFloat(void);
-    void    convertDouble(void);
+    void    convertChar(std::string str);
+    void    convertInt(std::string str);
+    void    convertFloat(std::string str);
+    void    convertDouble(std::string str);
 };
 
 #endif
