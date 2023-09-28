@@ -102,14 +102,34 @@ std::string numberParse(std::string& str)
     return type;
 }
 
+void    printPseudo(std::string& str, std::string type)
+{
+    if (type.compare("float") == 0)
+    {
+        std::cout << "char: Impossible" << std::endl;
+        std::cout << "int: Impossible" << std::endl;
+        std::cout << "float: " << str << std::endl;
+        str.erase(str.size() - 1);
+        std::cout << "double: " << str << std::endl;
+    }
+    else if (type.compare("double") == 0)
+    {
+        std::cout << "char: Impossible" << std::endl;
+        std::cout << "int: Impossible" << std::endl;
+        std::cout << "float: " << str << "f" << std::endl;
+        std::cout << "double: " << str << std::endl;
+    }
+}
+
 std::string checkIfPseudo(std::string& str)
 {
     if (str.compare("-inff") == 0 || str.compare("+inff") == 0 || str.compare("nanf") == 0)
-        return "float";
+        printPseudo(str, "float");
     else if (str.compare("-inf") == 0 || str.compare("+inf") == 0 || str.compare("nan") == 0)
-        return "double";
+        printPseudo(str, "double");
     else
         return "";
+    return "done";
 }
 
 int checkAfterFirstWord(std::string& str)

@@ -8,29 +8,23 @@ ScalarConverter::ScalarConverter(void)
     _types[3] = "float";
 }
 
-ScalarConverter::ScalarConverter(std::string str) : _str(str)
-{
-    _types[0] = "char";
-    _types[1] = "int";
-    _types[2] = "double";
-    _types[3] = "float";
-    
-}
-
 ScalarConverter::ScalarConverter(ScalarConverter const &copy)
 {
-    // this->_str = copy._str;
+    this->_types[0] = "char";
+    this->_types[1] = "int";
+    this->_types[2] = "double";
+    this->_types[3] = "float";
     *this = copy;
 }
 
-ScalarConverter::~ScalarConverter(void)
-{
-
-}
+ScalarConverter::~ScalarConverter(void) {}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &copy)
 {
-    this->_str = copy._str;
+    this->_types[0] = "char";
+    this->_types[1] = "int";
+    this->_types[2] = "double";
+    this->_types[3] = "float";
     return *this;
 }
 
@@ -55,7 +49,6 @@ void    ScalarConverter::convert(std::string str)
             break ;
         }
     }
-    // std::cout << "str -> " << str << " type -> " << type << std::endl;
 }
 
 std::string ScalarConverter::getType(std::string& str)
@@ -65,8 +58,8 @@ std::string ScalarConverter::getType(std::string& str)
         return "";
     removeAllSpaces(str);
     type = checkIfPseudo(str);
-    if (type.compare("float") == 0 || type.compare("double") == 0)
-        return type;
+    if (type.compare("done") == 0)
+        return "";
     if (std::isdigit(str[0]) || (str[0] == '-' && std::isdigit(str[1])))
         type = numberParse(str);
     else
@@ -76,54 +69,91 @@ std::string ScalarConverter::getType(std::string& str)
 
 void    ScalarConverter::convertChar(std::string str)
 {
-    std::cout << "char" << std::endl;
-
-    int i = static_cast<int>(str[0]);
-    double d = static_cast<double>(str[0]);
-    float f = static_cast<float>(str[0]);
-
     std::cout << "char: " << str << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "double: " << d << ".0" << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
+    std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+    std::cout << "float: " << static_cast<float>(str[0]) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(str[0]) << ".0" << std::endl;
+}
+
+int ScalarConverter::checkOutOfRange(std::string str)
+{
+    long i = atol(str.c_str());
+    if (i < std::numeric_limits<int>::max() && i > std::numeric_limits<int>::min())
+        return (0);
+    std::cout << "char: Impossible" << std::endl;
+    std::cout << "int: Impossible" << std::endl;
+    float f = atof(str.c_str());
+    if (f > std::numeric_limits<float>::max() || f < std::numeric_limits<float>::min())
+    {
+        std::cout << "float: Impossible" << std::endl;
+        std::cout << "double:Impossible" << std::endl;
+    }
+    else
+    {
+        std::cout << "float: " << f << ".0f" << std::endl;
+        std::cout << "double: " << f << ".0" << std::endl;
+    }
+    return (1);
 }
 
 void    ScalarConverter::convertInt(std::string str)
 {
-    std::cout << "int" << std::endl;
-    
-    int i = atoi(str.c_str());
-    char c = static_cast<char>(i);
-    double d = static_cast<double>(i);
-    float f = static_cast<float>(i);
-
-    if (c) //this dont work
-        std::cout << "char: " << c << std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "double: " << d << ".0" << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
+    if (!checkOutOfRange(str))
+    {
+        long i = atol(str.c_str());
+        if (isprint(static_cast<char>(i)))
+            std::cout << "char: " << static_cast<char>(i) << std::endl;
+        else
+            std::cout << "char: Non displayable" << std::endl;
+        std::cout << "int: " << i << std::endl;
+        std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+        std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
+    }
 }
 
 void    ScalarConverter::convertDouble(std::string str)
 {
-    std::cout << "double" << std::endl;
-
-    (void)str;
-    std::cout << "char: " << std::endl;
-    std::cout << "int: " << std::endl;
-    std::cout << "double: " << std::endl;
-    std::cout << "float: " << std::endl;
+    if (!checkOutOfRange(str))
+    {
+        double d = atof(str.c_str());
+        if (isprint(static_cast<char>(d)))
+            std::cout << "char: " << static_cast<char>(d) << std::endl;
+        else
+            std::cout << "char: Non displayable" << std::endl;
+        std::cout << "int: " << static_cast<int>(d) << std::endl;
+        if (d == (double)atoi(str.c_str()))
+        {
+            std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
+            std::cout << "double: " << d  << ".0" << std::endl;
+        }
+        else 
+        {
+            std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+            std::cout << "double: " << d  << std::endl;
+        }
+    }
 }
 
 void    ScalarConverter::convertFloat(std::string str)
 {
-    std::cout << "float" << std::endl;
-
-    (void)str;
-    std::cout << "char: " << std::endl;
-    std::cout << "int: " << std::endl;
-    std::cout << "double: " << std::endl;
-    std::cout << "float: " << std::endl;
+    if (!checkOutOfRange(str))
+    {
+        float f = atof(str.c_str());
+        if (isprint(static_cast<char>(f)))
+            std::cout << "char: " << static_cast<char>(f) << std::endl;
+        else
+            std::cout << "char: Non displayable" << std::endl;
+        std::cout << "int: " << static_cast<int>(f) << std::endl;
+        if (f == (float)atoi(str.c_str()))
+        {
+            std::cout << "float: " << f << ".0f" << std::endl;
+            std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;
+        }
+        else 
+        {
+            std::cout << "float: " << f << "f" << std::endl;
+            std::cout << "double: " << static_cast<double>(f) << std::endl;
+        }
+    }
 }
+ 
