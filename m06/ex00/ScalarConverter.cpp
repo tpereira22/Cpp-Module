@@ -1,19 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:06:18 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:06:19 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(void)
-{
-    _types[0] = "char";
-    _types[1] = "int";
-    _types[2] = "double";
-    _types[3] = "float";
-}
+ScalarConverter::ScalarConverter(void) {}
 
 ScalarConverter::ScalarConverter(ScalarConverter const &copy)
 {
-    this->_types[0] = "char";
-    this->_types[1] = "int";
-    this->_types[2] = "double";
-    this->_types[3] = "float";
     *this = copy;
 }
 
@@ -21,10 +23,7 @@ ScalarConverter::~ScalarConverter(void) {}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &copy)
 {
-    this->_types[0] = "char";
-    this->_types[1] = "int";
-    this->_types[2] = "double";
-    this->_types[3] = "float";
+    *this = copy;
     return *this;
 }
 
@@ -35,18 +34,28 @@ void    ScalarConverter::convert(std::string str)
     type = getType(str);
     if (type.compare("") == 0)
         return ;
-    void (ScalarConverter::*ptr[])(std::string) = {
-        &ScalarConverter::convertChar,
-        &ScalarConverter::convertInt,
-        &ScalarConverter::convertDouble,
-        &ScalarConverter::convertFloat
-    };
+    std::string typeList[] = { "char", "int", "double", "float" };
     for (int i = 0; i < 4; i++)
     {
-        if (_types[i].compare(type) == 0)
+        if (typeList[i].compare(type) == 0)
         {
-            (this->*ptr[i])(str);
-            break ;
+            switch (i)
+            {
+                case 0:
+                    convertChar(str);
+                    break;
+                case 1:
+                    convertInt(str);
+                    break;
+                case 2:
+                    convertDouble(str);
+                    break;
+                case 3:
+                    convertFloat(str);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

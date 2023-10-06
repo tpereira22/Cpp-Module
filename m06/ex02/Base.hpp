@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 15:07:03 by timartin          #+#    #+#             */
-/*   Updated: 2023/10/06 15:07:05 by timartin         ###   ########.fr       */
+/*   Created: 2023/10/06 15:08:34 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:08:35 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-# define DATA_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
-# include <iostream>
-
-struct Data
+class Base
 {
-    std::string str;
-    int num;
+public:
+    virtual ~Base();
 };
 
 #endif

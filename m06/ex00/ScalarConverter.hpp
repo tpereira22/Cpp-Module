@@ -1,5 +1,17 @@
-#ifndef SCALAR_CONVERTER_H
-# define SCALAR_CONVERTER_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:06:34 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:06:35 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SCALAR_CONVERTER_HPP
+# define SCALAR_CONVERTER_HPP
 
 # include <iostream>
 # include <cstdlib>
@@ -11,23 +23,19 @@
 class ScalarConverter
 {
 private:
-    std::string _types[4];
-
-    std::string getType(std::string& str);
-    void    convertChar(std::string str);
-    void    convertInt(std::string str);
-    void    convertFloat(std::string str);
-    void    convertDouble(std::string str);
-    int checkOutOfRange(std::string str);
-public:
     ScalarConverter(void);
     ScalarConverter(ScalarConverter const &copy);
     ~ScalarConverter(void);
-
     ScalarConverter &operator=(ScalarConverter const &copy);
+    static std::string getType(std::string& str);
+    static void convertChar(std::string str);
+    static void convertInt(std::string str);
+    static void convertFloat(std::string str);
+    static void convertDouble(std::string str);
+    static int checkOutOfRange(std::string str);
 
-    void    convert(std::string str);
-
+public:
+    static void convert(std::string str);
 };
 
 #endif

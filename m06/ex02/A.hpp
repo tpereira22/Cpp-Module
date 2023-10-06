@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 15:07:03 by timartin          #+#    #+#             */
-/*   Updated: 2023/10/06 15:07:05 by timartin         ###   ########.fr       */
+/*   Created: 2023/10/06 15:08:13 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:08:18 by timartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_HPP
-# define DATA_HPP
+#ifndef A_HPP
+# define A_HPP
 
-# include <iostream>
+# include "Base.hpp"
 
-struct Data
-{
-    std::string str;
-    int num;
-};
+class A : public Base {};
 
 #endif

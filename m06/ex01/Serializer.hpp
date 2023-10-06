@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:07:49 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:07:50 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
 
@@ -7,14 +19,15 @@
 
 class Serializer
 {
-public:
+private:
     Serializer(void);
     ~Serializer(void);
     Serializer(const Serializer& copy);
     Serializer& operator=(const Serializer& copy);
 
-    uintptr_t serialize(Data* ptr);
-    Data* deserialize(uintptr_t raw);
+public:
+    static uintptr_t serialize(Data* ptr);
+    static Data* deserialize(uintptr_t raw);
 
 };
 

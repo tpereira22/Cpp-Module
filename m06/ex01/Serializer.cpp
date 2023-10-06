@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:07:34 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:07:35 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Serializer.hpp"
 
 Serializer::Serializer(void) {}
@@ -6,12 +18,12 @@ Serializer::~Serializer(void) {}
 
 Serializer::Serializer(const Serializer& copy)
 {
-    *this = copy;
+    (void)copy;
 }
 
 Serializer& Serializer::operator=(const Serializer& copy)
 {
-    *this = copy;
+    (void)copy;
     return *this;
 }
 

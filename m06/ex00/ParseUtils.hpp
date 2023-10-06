@@ -1,5 +1,17 @@
-#ifndef PARSE_UTILS_CPP
-# define PARSE_UTILS_CPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ParseUtils.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 15:06:05 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/06 15:06:11 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PARSE_UTILS_HPP
+# define PARSE_UTILS_HPP
 
 # include <iostream>
 
