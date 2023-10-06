@@ -1,9 +1,12 @@
 #ifndef DATA_HPP
 # define DATA_HPP
 
-class Data
-{
+# include <iostream>
 
+struct Data
+{
+    std::string str;
+    int num;
 };
 
 #endif
