@@ -50,31 +50,37 @@ void identify(Base* p)
 void identify(Base& p)
 {
     std::cout << "Identify Ref" << std::endl;
-    bool sucess = false;
+    int exepCnt = 0;
     try
     {
         try
         {
             A a = dynamic_cast<A&>(p);
             std::cout << "Object is type A" << std::endl;
-            sucess = true;
         }
-        catch(const std::exception& e) {}
+        catch(const std::exception& e)
+        {
+            exepCnt++;
+        }
         try
         {
             B b = dynamic_cast<B&>(p);
             std::cout << "Object is type B" << std::endl;
-            sucess = true;
         }
-        catch(const std::exception& e) {}
+        catch(const std::exception& e) 
+        {
+            exepCnt++;
+        }
         try
         {
             C c = dynamic_cast<C&>(p);
             std::cout << "Object is type C" << std::endl;
-            sucess = true;
         }
-        catch(const std::exception& e) {}
-        if (!sucess)
+        catch(const std::exception& e)
+        {
+            exepCnt++;
+        }
+        if (exepCnt == 3)
             throw std::runtime_error("Object not convertable!");
     }
     catch(const std::exception& e)
@@ -105,7 +111,4 @@ int main(void)
     identify(basePtr);
     identify(*basePtr);
     delete basePtr;
-    std::cout << "------------------" << std::endl;
-    basePtr = NULL;
-    identify(basePtr);
 }

@@ -12,7 +12,7 @@
 
 NAME		= convert
 
-SRCS		= main.cpp ScalarConverter.cpp ParseUtils.cpp
+SRCS		= main.cpp ScalarConverter.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

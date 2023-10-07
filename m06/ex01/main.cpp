@@ -37,6 +37,7 @@ int main ()
     std::cout << "test -> " << test << std::endl;
     std::cout << "test.str -> " << test->str << std::endl;
     std::cout << "test.num -> " << test->num << std::endl << std::endl;
+    
     std::cout << "--> Original Data Ptr <---" << std::endl;
     std::cout << "data -> " << data << std::endl;
     std::cout << "data.str -> " << data->str << std::endl;
