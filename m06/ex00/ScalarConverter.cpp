@@ -16,14 +16,14 @@ ScalarConverter::ScalarConverter(void) {}
 
 ScalarConverter::ScalarConverter(ScalarConverter const &copy)
 {
-    *this = copy;
+    (void)copy;
 }
 
 ScalarConverter::~ScalarConverter(void) {}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &copy)
 {
-    *this = copy;
+    (void)copy;
     return *this;
 }
 

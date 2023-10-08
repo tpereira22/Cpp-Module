@@ -30,10 +30,12 @@ int main(void)
         swap(c, d);
         swap(e, f);
 
-        std::cout << a << " | " << b << " | " << c << " | " << d << " | " << e << " | " << f << std::endl;
+        std::cout << "a -> " << a << " | " << "b -> " << b << " | ";
+        std::cout << "c -> " << c << " | " << "d -> " << d << " | ";
+        std::cout << "e -> " << e << " | " << "f -> " << f << std::endl;
 
-        std::cout << min(a, b) << " | " << min(c, d) << " | " << min(e, f) << std::endl;
+        std::cout << "min -> " << min(a, b) << " | " << min(c, d) << " | " << min(e, f) << std::endl;
 
-        std::cout << max(a, b) << " | " << max(c, d) << " | " << max(e, f) << std::endl;
+        std::cout << "max -> " << max(a, b) << " | " << max(c, d) << " | " << max(e, f) << std::endl;
     }
 }
