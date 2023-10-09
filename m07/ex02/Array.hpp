@@ -36,14 +36,14 @@ public:
         if (this->_array != NULL)
             delete[] _array;
         this->_array = new T[this->_size];
-        for (int i = 0; i < this->_size; i++)
+        for (int i = 0; i < static_cast<int>(this->_size); i++)
             this->_array[i] = copy._array[i];
         return *this;
     }
 
     T &operator[](int index)
     {
-        if (index < 0 || index >= _size)
+        if (index < 0 || index >= static_cast<int>(_size))
         {
             throw std::out_of_range("Index out of bounds");
         }
