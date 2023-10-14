@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 16:37:54 by timartin          #+#    #+#             */
+/*   Updated: 2023/10/14 16:38:08 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Whatever.hpp"
 #include <iostream>
 
@@ -37,5 +49,13 @@ int main(void)
         std::cout << "min -> " << min(a, b) << " | " << min(c, d) << " | " << min(e, f) << std::endl;
 
         std::cout << "max -> " << max(a, b) << " | " << max(c, d) << " | " << max(e, f) << std::endl;
+    
+        std::string str1 = "yeye";
+        std::string str2 = "yeyi";
+
+        swap(str1, str2);
+        std::cout << std::endl << str1 << " | " << str2 << std::endl;
+        std::cout << "min -> " << min(str1, str2) << std::endl;
+        std::cout << "max -> " << max(str1, str2) << std::endl;
     }
 }
