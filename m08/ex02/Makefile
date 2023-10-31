@@ -1,6 +1,6 @@
-NAME		= easy
+NAME		= MutantStack
 
-SRCS		= main.cpp 
+SRCS		= main.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

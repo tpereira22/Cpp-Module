@@ -4,7 +4,6 @@
 # include <iostream>
 # include <vector>
 # include <list>
-# include <array>
 # include <algorithm>
 
 template <typename T>

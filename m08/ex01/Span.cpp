@@ -1,9 +1,6 @@
 #include "Span.hpp"
 
-Span::Span(void) : _max(0)
-{
-
-}
+Span::Span(void) : _max(0) {}
 
 Span::Span(unsigned int N) : _max(N)
 {
@@ -12,16 +9,20 @@ Span::Span(unsigned int N) : _max(N)
 
 Span::Span(Span const &copy)
 {
-
+    *this = copy;
 }
 
-Span::~Span(void)
-{
-
-}
+Span::~Span(void) {}
 
 Span    &Span::operator=(Span const &copy)
 {
+    if (!copy._spanVector.empty())
+    {
+        for (size_t i = 0; i < copy._spanVector.size(); i++)
+        {
+            this->_spanVector.push_back(copy._spanVector[i]); 
+        }
+    }
     return *this;
 }
 
@@ -33,36 +34,56 @@ void    Span::addNumber(unsigned int num)
         throw Span::SpanIsFullException();
 }
 
+// template<typename T>
+void    Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    for (std::vector<int>::iterator it = begin; it != end; ++it)
+    {
+        if (_spanVector.size() < _max)
+            _spanVector.push_back(*it);
+        else
+            throw Span::SpanIsFullException();
+    }
+}
+
 int     Span::shortestSpan(void)
 {
     if (_spanVector.size() < 2)
         throw Span::NotEnoughNumbersException();
     
-    int shortSpan = 0;
+    int shortSpan = -1;
     std::vector<int>::iterator it;
-    for (it = _spanVector.begin(); it != _spanVector.end(); it++)
+    std::vector<int>::iterator it2;
+    for (it = _spanVector.begin(); it != _spanVector.end(); ++it)
     {
-
+        for (it2 = it + 1; it2 != _spanVector.end(); ++it2)
+        {
+            if (*it > *it2)
+            {
+                if ((*it - *it2) < shortSpan || shortSpan < 0)
+                    shortSpan = *it - *it2;
+            }
+            else
+            {
+                if ((*it2 - *it) < shortSpan || shortSpan < 0)
+                    shortSpan = *it2 - *it;
+            
+            }
+        }
     }
-    return 0;
+    return shortSpan;
 }
 
 int     Span::longestSpan(void)
 {
     if (_spanVector.size() < 2)
         throw Span::NotEnoughNumbersException();
-    
-    int minValue = _spanVector[0];
-    int maxValue = _spanVector[0];
 
-    std::vector<int>::iterator  it;
-    for (it = _spanVector.begin(); it != _spanVector.end(); it++)
-    {
-        if (minValue > *it)
-            minValue = *it;
-        if (maxValue < *it)
-            maxValue = *it;
-    }
+    std::vector<int>::iterator it;
+    it = std::min_element(_spanVector.begin(), _spanVector.end());
+    int minValue = *it;
+    it = std::max_element(_spanVector.begin(), _spanVector.end());
+    int maxValue = *it;
     return (maxValue - minValue);
 }
 
@@ -78,6 +99,9 @@ const char  *Span::NotEnoughNumbersException::what() const throw()
 
 void    Span::printSpan(void) // test func
 {
-    for (int value : this->_spanVector)
-        std::cout << value << std::endl;
+    std::vector<int>::iterator it;
+    for (it = _spanVector.begin(); it != _spanVector.end(); ++it)
+    {
+        std::cout << *it << std::endl;
+    }
 }
