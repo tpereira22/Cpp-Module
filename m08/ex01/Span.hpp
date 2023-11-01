@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/01 17:33:12 by timartin          #+#    #+#             */
+/*   Updated: 2023/11/01 17:33:13 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
@@ -19,7 +31,6 @@ public:
     Span    &operator=(Span const &copy);
     
     void    addNumber(unsigned int num);
-    // template<typename T>
     void    addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
     int     shortestSpan(void);
     int     longestSpan(void);

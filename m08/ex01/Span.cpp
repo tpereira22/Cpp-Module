@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/01 17:33:02 by timartin          #+#    #+#             */
+/*   Updated: 2023/11/01 17:33:06 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Span.hpp"
 
 Span::Span(void) : _max(0) {}
@@ -34,7 +46,6 @@ void    Span::addNumber(unsigned int num)
         throw Span::SpanIsFullException();
 }
 
-// template<typename T>
 void    Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
     for (std::vector<int>::iterator it = begin; it != end; ++it)

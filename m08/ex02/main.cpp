@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: timartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/01 17:33:28 by timartin          #+#    #+#             */
+/*   Updated: 2023/11/01 17:33:29 by timartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "MutantStack.hpp"
 
 int main()
@@ -47,6 +59,13 @@ int main()
         {
             std::cout << "mStringStack -> " << *it << std::endl;
         }
+        std::cout << "size -> " << mStringStack.size() << std::endl;
+        mStringStack.pop(); std::cout << std::endl;
+        for (it = mStringStack.begin(); it != mStringStack.end(); ++it)
+        {
+            std::cout << "mStringStack -> " << *it << std::endl;
+        }
+        std::cout << "size -> " << mStringStack.size() << std::endl;
     }
     {
         std::cout << std::endl << "----> COPY/ASSIGNMENT TEST <----" << std::endl;
@@ -67,7 +86,6 @@ int main()
         {
             std::cout << "mstack3 -> " << *it << std::endl;
         }
-        
     }
 
 }
