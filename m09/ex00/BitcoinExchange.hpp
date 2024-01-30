@@ -17,7 +17,8 @@ private:
 
     static int checkInputFile(std::ifstream &file, std::string const filename);
     static int checkIfDigit(std::string date);
-    static int checkIfDateExist(std::string month, std::string day);
+    static int checkIfLeapYear(int iYear, int iDay);
+    static int checkIfDateExist(std::string year, std::string month, std::string day);
     static int checkDateFormat(std::string line);
     static int checkIfValidLine(std::string line);
     static void convertBitcoinValues(std::map<std::string, std::string> &database, std::string const filename);

@@ -36,36 +36,71 @@ int BitcoinExchange::checkIfDigit(std::string date)
     return 1;
 }
 
-int BitcoinExchange::checkIfDateExist(std::string month, std::string day)
+int BitcoinExchange::checkIfLeapYear(int iYear, int iDay)
 {
+    if (iYear % 4 == 0)
+    {
+        if (iYear % 100 != 0)
+        {
+            if (iDay > 29)
+                return 0;
+        }
+        else
+        {
+            if (iYear % 400 == 0)
+            {
+                if (iDay > 29)
+                    return 0;
+            }
+            else
+            {
+                if (iDay > 28)
+                    return 0;
+            }
+        }
+    }
+    else
+    {
+        if (iDay > 28)
+            return 0;
+    }
+    return 1;
+}
+
+int BitcoinExchange::checkIfDateExist(std::string year, std::string month, std::string day)
+{
+    int iYear;
     int iMonth;
     int iDay;
 
+    iYear = std::atoi(year.c_str());
     iMonth = std::atoi(month.c_str());
     iDay = std::atoi(day.c_str());
     if (iMonth > 12)
         return 0;
-    if (iMonth < 8 && (iMonth % 2 != 0) && iDay > 31)
+    if (iMonth == 2)
     {
-        return 0;
-    }
-    else if (iMonth < 8 && (iMonth % 2 == 0))
-    {
-        if (iMonth == 2)
-        {
-            if (iDay > 28)
-            {} //handle fev ano bisexto
-        }
-        if (iDay > 30)
+        if (!checkIfLeapYear(iYear, iDay))
             return 0;
     }
-    else if (iMonth > 7 && (iMonth % 2 != 0) && iDay > 30)
+    else
     {
-        return 0;
-    }
-    else if (iMonth > 7 && (iMonth % 2 == 0) && iDay > 31)
-    {
-        return 0;
+        if (iMonth < 8 && (iMonth % 2 != 0) && iDay > 31)
+        {
+            return 0;
+        }
+        else if (iMonth < 8 && (iMonth % 2 == 0) && iDay > 30)
+        {
+            return 0;
+        }
+        else if (iMonth > 7 && (iMonth % 2 != 0) && iDay > 30)
+        {
+            return 0;
+        }
+        else if (iMonth > 7 && (iMonth % 2 == 0) && iDay > 31)
+        {
+            return 0;
+        }
     }
     return 1;
 }
@@ -86,7 +121,7 @@ int BitcoinExchange::checkDateFormat(std::string line)
 
     if (year.size() != 4 || month.size() != 2 || day.size() != 2
         || !checkIfDigit(year)|| !checkIfDigit(month)|| !checkIfDigit(day)
-        || !checkIfDateExist(month, day))
+        || !checkIfDateExist(year, month, day))
     {
         std::cout << "Error: Bad input => " << year << "-" << month << "-" << day << std::endl;
     }
