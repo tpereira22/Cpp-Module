@@ -4,6 +4,7 @@
 # include <iostream>
 # include <fstream>
 # include <cctype>
+# include <limits>
 # include <cstdlib>
 # include <map>
 
@@ -18,9 +19,14 @@ private:
     static int checkInputFile(std::ifstream &file, std::string const filename);
     static int checkIfDigit(std::string date);
     static int checkIfLeapYear(int iYear, int iDay);
-    static int checkIfDateExist(std::string year, std::string month, std::string day);
-    static int checkDateFormat(std::string line);
-    static int checkIfValidLine(std::string line);
+    static int checkIfDateExist(std::string year, std::string month, std::string day, int *date);
+    static int checkIntMax(std::string line, size_t firstNumber);
+    static int checkIfValidNumber(std::string line, size_t firstNumber);
+    static int checkDateFormat(std::string line, int *date);
+    static int checkLineFormat(std::string line);
+    static std::string getDate(std::string line);
+    static std::string getAmount(std::string line);
+    static float getBitcoinTotal(std::map<std::string, std::string> &database, int *date, float amount);
     static void convertBitcoinValues(std::map<std::string, std::string> &database, std::string const filename);
     static void getDatabase(std::map<std::string, std::string> &database);
 
