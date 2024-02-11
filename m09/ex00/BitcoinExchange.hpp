@@ -8,6 +8,9 @@
 # include <cstdlib>
 # include <map>
 
+# define TRUE 1
+# define FALSE 0
+
 class BitcoinExchange
 {
 private:
@@ -24,9 +27,10 @@ private:
     static int checkIfValidNumber(std::string line, size_t firstNumber);
     static int checkDateFormat(std::string line, int *date);
     static int checkLineFormat(std::string line);
+    static int *getDateArray(std::string date);
     static std::string getDate(std::string line);
     static std::string getAmount(std::string line);
-    static float getBitcoinTotal(std::map<std::string, std::string> &database, int *date, float amount);
+    static float getBitcoinTotal(std::map<std::string, std::string> &database, int *fileDate, float amount);
     static void convertBitcoinValues(std::map<std::string, std::string> &database, std::string const filename);
     static void getDatabase(std::map<std::string, std::string> &database);
 

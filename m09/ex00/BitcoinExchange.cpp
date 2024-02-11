@@ -207,6 +207,34 @@ int BitcoinExchange::checkLineFormat(std::string line)
     return 1;
 }
 
+int *BitcoinExchange::getDateArray(std::string sDate)
+{
+    std::string year;
+    std::string month;
+    std::string day;
+
+    size_t dash = sDate.find("-");
+    year = sDate.substr(0, dash);
+    size_t dash2 = sDate.find("-", dash + 1);
+    dash2 = sDate.find("-", dash + 1);
+    month = sDate.substr(dash + 1, dash2 - dash - 1);
+    day = sDate.substr(sDate.find("-", dash2) + 1, sDate.find(" ") - dash2 - 1);
+
+    int iYear;
+    int iMonth;
+    int iDay;
+    int *date = new int[3];
+
+    iYear = std::atoi(year.c_str());
+    iMonth = std::atoi(month.c_str());
+    iDay = std::atoi(day.c_str());
+    date[0] = iYear;
+    date[1] = iMonth;
+    date[2] = iDay;
+
+    return date;
+}
+
 std::string BitcoinExchange::getDate(std::string line)
 {
     std::string date;
@@ -214,7 +242,6 @@ std::string BitcoinExchange::getDate(std::string line)
     date = line.substr(0, line.find("|") - 1);
     if (date.find(" ") != std::string::npos)
         date.erase(date.find(" "));
-    // std::cout << "date -> " << date << "a" << std::endl;
     return date;
 }
 
@@ -227,31 +254,44 @@ std::string BitcoinExchange::getAmount(std::string line)
     amount = line.substr(firstNumber, line.size());
     if (amount.find(" ") != std::string::npos)
         amount.erase(amount.find(" "));
-    // std::cout << "amount -> " << amount << "a" << std::endl;
     return amount;
 }
 
-float BitcoinExchange::getBitcoinTotal(std::map<std::string, std::string> &database, int *date, float amount)
+float BitcoinExchange::getBitcoinTotal(std::map<std::string, std::string> &database, int *fileDate, float amount)
 {
-    std::map<std::string, std::string>::iterator it;
-    // TODO: getYear, getMonth, getDay functions
-    // for (it = database.end(); it != database.begin(); ++it)
-    // {
-    //     int databseYear = atoi(it->first.c_str());
-    //     if (date[0] > databseYear)
+    bool yearFlag = FALSE;
+    bool monthFlag = FALSE;
 
-    // }
-    std::cout << "amount -> " <<  amount << std::endl;
-    for (int i = 0; i < 3; i++)
+    float databaseValue = 0;
+    float bigValue = 47115.93;
+
+    std::map<std::string, std::string>::reverse_iterator it;
+    for (it = database.rbegin(); it != database.rend(); ++it)
     {
-        std::cout << date[i] << "  ";
+        int *databaseDate = getDateArray(it->first);
+        if (fileDate[0] == databaseDate[0])
+            yearFlag = TRUE;
+        else
+            yearFlag = FALSE;
+        if (yearFlag && fileDate[1] == databaseDate[1])
+            monthFlag = TRUE;
+        if (yearFlag && monthFlag && fileDate[2] >= databaseDate[2])
+        {
+            databaseValue = std::atof(it->second.c_str()) * amount;
+            delete[] databaseDate;
+            break ;
+        }
+
+        delete[] databaseDate;
     }
-    std::cout << std::endl;
-    return 1;
+    if (yearFlag == FALSE && fileDate[0] >= 2022)
+        databaseValue = bigValue * amount;
+    return databaseValue;
 }
 
 void BitcoinExchange::convertBitcoinValues(std::map<std::string, std::string> &database, std::string const filename)
 {
+    int firstLine = 0;
     std::ifstream file(filename.c_str());
     if (!checkInputFile(file, filename))
         return ;
@@ -259,7 +299,13 @@ void BitcoinExchange::convertBitcoinValues(std::map<std::string, std::string> &d
     std::string line;
     while (getline(file, line))
     {
-        if (!line.compare("date | value"))
+        firstLine++;
+        if (firstLine == 1 && line.compare("date | value") != 0)
+        {
+            std::cout << "Error: Wrong file format" << std::endl;
+            break ; 
+        }
+        if (line.compare("date | value") == 0)
             continue ;
         int *date = new int[3];
         if (checkDateFormat(line, date) && checkLineFormat(line))
@@ -302,9 +348,4 @@ void BitcoinExchange::getBitcoinValues(std::string const filename)
     if (database.empty())
         return ;
     convertBitcoinValues(database, filename);
-    // std::map<std::string, std::string>::iterator it;
-    // for (it = database.begin(); it != database.end(); ++it)
-    // {
-    //     std::cout << "date -> " << it->first << " | " << " value -> " << it->second << std::endl;
-    // }
 }
