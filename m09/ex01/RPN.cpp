@@ -82,7 +82,7 @@ void RPN::doOperation(std::stack<float> &numberStack, char op)
     numberStack.push(newNum);
 }
 
-int RPN::processExp(std::string exp)
+void RPN::processExp(std::string exp)
 {
     std::stack<float> numberStack;
 
@@ -95,13 +95,12 @@ int RPN::processExp(std::string exp)
             if (numberStack.size() < 2)
             {
                 std::cout << "Error: Not enough numbers in the stack for operation '" << exp[i] << "' !" << std::endl;
-                return 0;
+                return ;
             }
             doOperation(numberStack, exp[i]);
         }
     }
     checkFinalResult(numberStack);
-    return 1;
 }
 
 void RPN::callRPN(std::string exp)

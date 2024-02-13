@@ -16,7 +16,7 @@ private:
     static int checkExpFormat(std::string exp);
     static void checkFinalResult(std::stack<float> &numberStack);
     static void doOperation(std::stack<float> &numberStack, char op);
-    static int processExp(std::string exp);
+    static void processExp(std::string exp);
 
 
 public:
