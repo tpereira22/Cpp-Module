@@ -1,6 +1,6 @@
-NAME		= ProvName
+NAME		= RPN
 
-SRCS		= main.cpp 
+SRCS		= main.cpp RPN.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
