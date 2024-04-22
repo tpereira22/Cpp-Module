@@ -80,6 +80,8 @@ int BitcoinExchange::checkIfDateExist(std::string year, std::string month, std::
     date[1] = iMonth;
     date[2] = iDay;
 
+    if (iDay == 0 || iMonth == 0 || iYear == 0)
+        return 0;
     if (iMonth > 12)
         return 0;
     if (iMonth == 2)
@@ -130,7 +132,7 @@ int BitcoinExchange::checkIntMax(std::string line, size_t firstNumber)
 
     sAmount = line.substr(firstNumber, line.size());
     amount = atol(sAmount.c_str());
-    if (amount > std::numeric_limits<int>::max())
+    if (amount > 1000 || amount < 0)
     {
         std::cout << "Error: too large a number." << std::endl;
         return 0;
@@ -148,7 +150,7 @@ int BitcoinExchange::checkIfValidNumber(std::string line, size_t firstNumber)
         {
             if (line.find_first_not_of(" ", i) != std::string::npos)
             {
-                std::cout << "Error: found not space after number" << std::endl;
+                std::cout << "Error: Bad input => " << line << std::endl;
                 return 0;
             }
         }
@@ -156,7 +158,7 @@ int BitcoinExchange::checkIfValidNumber(std::string line, size_t firstNumber)
             dotCounter++;
         if ((!std::isdigit(line[i]) && line[i] != 46 && line[i] != 32) || dotCounter > 1)
         {
-            std::cout << "Error: Bad input => " << "bad amount " << line << std::endl;
+            std::cout << "Error: Bad input => " << line << std::endl;
             return 0;
         }
     }
@@ -177,18 +179,18 @@ int BitcoinExchange::checkLineFormat(std::string line)
     {
         if (firstPipe == std::string::npos)
         {
-            std::cout << "Error: Bad input => " << "no pipe " << line << std::endl;
+            std::cout << "Error: Bad input => " << line << std::endl;
             return 0;
         }
         if (line[i] && line[i] != 32)
-            std::cout << "Error: Bad input => " << "transition error ->" << line << std::endl;
+            std::cout << "Error: Bad input => " << line << std::endl;
     }
     firstNumber = line.find_first_of("0123456789", firstPipe);
     for (size_t i = firstPipe + 1; i < firstNumber; i++)
     {
         if (firstNumber == std::string::npos)
         {
-            std::cout << "Error: Bad input => " << "no number" << line << std::endl;
+            std::cout << "Error: Bad input => " << line << std::endl;
             return 0;
         }
         if (line[i] && line[i] != 32)
@@ -198,13 +200,32 @@ int BitcoinExchange::checkLineFormat(std::string line)
                 std::cout << "Error: not a positive number." << std::endl;
                 return 0;
             }
-            std::cout << "Error: Bad input => " << "after transition error ->" << line << std::endl;
+            std::cout << "Error: Bad input => " << line << std::endl;
             return 0;
         }
     }
     if (!checkIfValidNumber(line, firstNumber))
         return 0;
     return 1;
+}
+
+bool BitcoinExchange::checkFirstLine(std::string line)
+{
+    std::string lineNoSpaces;
+
+    for (size_t i = 0; i < line.size(); i++)
+    {
+        if (line[i] == ' ')
+            i++;
+        if (line[i] && line[i] != ' ')
+        {
+            lineNoSpaces += line[i];
+        }
+    }
+
+    if (lineNoSpaces.compare("date|value") == 0)
+        return TRUE;
+    return FALSE;
 }
 
 int *BitcoinExchange::getDateArray(std::string sDate)
@@ -257,13 +278,53 @@ std::string BitcoinExchange::getAmount(std::string line)
     return amount;
 }
 
+float BitcoinExchange::yearNotFound(std::map<std::string, std::string> &database, int *fileDate, float amount)
+{
+    std::map<std::string, std::string>::reverse_iterator it = database.rbegin();
+    
+    int *dateArray = getDateArray(it->first);
+    float bigValue = std::atof(it->second.c_str());
+    int initialYear = 0;
+    float databaseValue = 0;
+    bool findFlag = false;
+        
+    if (fileDate[0] >= dateArray[0])
+        databaseValue = bigValue * amount;
+    else
+    {
+        for (; it != database.rend(); ++it)
+        {
+            initialYear = fileDate[0];
+            delete []dateArray;
+            dateArray = getDateArray(it->first);
+            bigValue = std::atof(it->second.c_str());
+            while (initialYear > 0)
+            {
+                if (initialYear == dateArray[0])
+                {
+                    databaseValue = std::atof(it->second.c_str()) * amount;
+                    findFlag = true;
+                    break ;
+                }
+                initialYear--;
+            }
+            if (findFlag)
+                break ;
+        }
+    }
+
+    if (dateArray)
+        delete []dateArray;
+
+    return databaseValue;
+}
+
 float BitcoinExchange::getBitcoinTotal(std::map<std::string, std::string> &database, int *fileDate, float amount)
 {
     bool yearFlag = FALSE;
     bool monthFlag = FALSE;
 
     float databaseValue = 0;
-    float bigValue = 47115.93;
 
     std::map<std::string, std::string>::reverse_iterator it;
     for (it = database.rbegin(); it != database.rend(); ++it)
@@ -281,11 +342,12 @@ float BitcoinExchange::getBitcoinTotal(std::map<std::string, std::string> &datab
             delete[] databaseDate;
             break ;
         }
-
         delete[] databaseDate;
     }
-    if (yearFlag == FALSE && fileDate[0] >= 2022)
-        databaseValue = bigValue * amount;
+
+    if (yearFlag == FALSE)
+        databaseValue = yearNotFound(database, fileDate, amount);
+
     return databaseValue;
 }
 
@@ -300,12 +362,12 @@ void BitcoinExchange::convertBitcoinValues(std::map<std::string, std::string> &d
     while (getline(file, line))
     {
         firstLine++;
-        if (firstLine == 1 && line.compare("date | value") != 0)
+        if (firstLine == 1 && !checkFirstLine(line))
         {
             std::cout << "Error: Wrong file format" << std::endl;
             break ; 
         }
-        if (line.compare("date | value") == 0)
+        else if (firstLine == 1)
             continue ;
         int *date = new int[3];
         if (checkDateFormat(line, date) && checkLineFormat(line))

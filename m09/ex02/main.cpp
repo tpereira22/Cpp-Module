@@ -4,7 +4,7 @@ int main (int ac, char **av)
 {
     if (ac < 2)
     {
-        std::cout << "Error: Not enough arguments !!" << std::endl;
+        PmergeMe::printMsg("Not enough arguments", 1);
         return 1;
     }
     PmergeMe::callAlgo(ac, av);
